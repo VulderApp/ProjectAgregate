@@ -15,7 +15,5 @@ jobs:
         run: dotnet build --configuration Release --no-restore 
       - name: Build NuGet package
         run: dotnet pack -c Release
-      - name: publish to Github Packages
-        run: dotnet nuget push src/Vulder.SharedKernel/bin/Release/*.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/VulderApp/index.json
       - name: publish to Azure DevOps Artifacts
         run: dotnet nuget push --source "vulder-azure" --api-key az {{ secrects.AZURE_KEY }}
