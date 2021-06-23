@@ -11,10 +11,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <PackageVersion>0.1.0</PackageVersion>
+    <PackageVersion>0.1.1</PackageVersion>
     <Title>Vulder.SharedKernel</Title>
     <Authors>MRmlik12</Authors>
     <Copyright>VulderApp</Copyright>
+    <Description>Context for microservices in distributed systems</Description>
     <PackageProjectUrl>https://github.com/VulderApp/SharedKernel</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/VulderApp/SharedKernel/blob/main/LICENSE.md</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/VulderApp/SharedKernel</RepositoryUrl>
