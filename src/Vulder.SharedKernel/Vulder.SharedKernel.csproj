@@ -14,7 +14,6 @@
     <PackageVersion>0.1.0</PackageVersion>
     <Title>Vulder.SharedKernel</Title>
     <Authors>MRmlik12</Authors>
-    <Description> </Description>
     <Copyright>VulderApp</Copyright>
     <PackageProjectUrl>https://github.com/VulderApp/SharedKernel</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/VulderApp/SharedKernel/blob/main/LICENSE.md</PackageLicenseUrl>
