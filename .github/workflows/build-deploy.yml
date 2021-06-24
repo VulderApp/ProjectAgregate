@@ -16,4 +16,4 @@ jobs:
       - name: Build NuGet package
         run: dotnet pack -c Release
       - name: publish to Azure DevOps Artifacts
-        run: dotnet nuget push --source "vulder-azure" --api-key az ${{ secrets.AZURE_KEY }}
+        run: dotnet nuget push --source "vulder-azure" --api-key ${{ secrets.AZURE_KEY }}
