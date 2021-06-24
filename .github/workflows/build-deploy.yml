@@ -16,4 +16,4 @@ jobs:
       - name: Build NuGet package
         run: dotnet pack -c Release
       - name: publish to Azure DevOps Artifacts
-        run: dotnet nuget push src/Vulder.SharedKernel/bin/Release/*.nupkg -k ${{ secrets.AZURE_KEY }} -s https://pkgs.dev.azure.com/MRmlik12Dev/Vulder/_packaging/vulder-azure/nuget/v3/index.json
+        run: dotnet nuget push src/Vulder.SharedKernel/bin/Release/*.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json
