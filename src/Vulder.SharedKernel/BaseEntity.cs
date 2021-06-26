@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson.Serialization.Attributes;
@@ -6,8 +7,9 @@ namespace Vulder.SharedKernel
 {
     public abstract class BaseEntity
     {
+        [Key]
         [BsonId]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
 
         public List<BaseDomainEvent> Events { get; set; } = new();
     }
