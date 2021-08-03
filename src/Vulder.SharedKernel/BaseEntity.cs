@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Vulder.SharedKernel
@@ -11,6 +12,7 @@ namespace Vulder.SharedKernel
         [BsonId]
         public Guid Id { get; set; }
 
+        [NotMapped]
         public List<BaseDomainEvent> Events { get; set; } = new();
     }
 }
