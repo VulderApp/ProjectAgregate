@@ -11,7 +11,8 @@ public abstract class BaseEntity
 {
     [Key]
     [BsonId]
-    [BsonGuidRepresentation(GuidRepresentation.Standard)]
+    [BsonRequired]
+    [BsonRepresentation(BsonType.String)]
     public Guid Id { get; set; }
 
     [NotMapped]

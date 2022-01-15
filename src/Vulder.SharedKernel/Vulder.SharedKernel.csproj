@@ -15,7 +15,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <PackageVersion>0.1.8</PackageVersion>
+    <PackageVersion>0.1.9</PackageVersion>
     <Title>Vulder.SharedKernel</Title>
     <Authors>MRmlik12</Authors>
     <Copyright>VulderApp</Copyright>
