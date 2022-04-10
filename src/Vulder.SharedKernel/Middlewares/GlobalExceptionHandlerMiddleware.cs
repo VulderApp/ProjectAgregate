@@ -2,6 +2,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Vulder.SharedKernel.Exceptions;
 using Vulder.SharedKernel.Models;
@@ -11,10 +12,12 @@ namespace Vulder.SharedKernel.Middlewares;
 public class GlobalExceptionHandlerMiddleware
 {
     private readonly RequestDelegate _next;
+    private readonly ILogger<GlobalExceptionHandlerMiddleware> _logger;
 
-    public GlobalExceptionHandlerMiddleware(RequestDelegate next)
+    public GlobalExceptionHandlerMiddleware(RequestDelegate next, ILogger<GlobalExceptionHandlerMiddleware> logger)
     {
         _next = next;
+        _logger = logger;
     }
 
     public async Task Invoke(HttpContext context)
@@ -25,6 +28,8 @@ public class GlobalExceptionHandlerMiddleware
         }
         catch (Exception e)
         {
+            LogException(e);
+
             var response = context.Response;
             response.ContentType = "application/json";
             response.StatusCode = GetStatusCode(e);
@@ -38,6 +43,9 @@ public class GlobalExceptionHandlerMiddleware
             await response.WriteAsync(JsonConvert.SerializeObject(responseBody));
         }
     }
+
+    private void LogException(Exception exception)
+        => _logger.LogError(22, exception, "An error was thrown");
 
     private static int GetStatusCode(Exception exception)
     {
