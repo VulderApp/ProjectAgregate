@@ -26,17 +26,19 @@ public class GlobalExceptionHandlerMiddleware
         {
             await _next.Invoke(context);
         }
-        catch (VulderBaseException e)
+        catch (Exception e)
         {
             LogException(e);
+            
+            var vulderBaseException = (VulderBaseException)e;
 
             var response = context.Response;
             response.ContentType = "application/json";
-            response.StatusCode = (int)e.StatusCode;
+            response.StatusCode = (int)vulderBaseException.StatusCode;
 
             var responseBody = new ExceptionModel
             {
-                StatusCode = (int)e.StatusCode,
+                StatusCode = (int)vulderBaseException.StatusCode,
                 ErrorMessage = e.Message
             };
 
