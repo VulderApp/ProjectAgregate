@@ -26,17 +26,17 @@ public class GlobalExceptionHandlerMiddleware
         {
             await _next.Invoke(context);
         }
-        catch (Exception e)
+        catch (VulderBaseException e)
         {
             LogException(e);
 
             var response = context.Response;
             response.ContentType = "application/json";
-            response.StatusCode = GetStatusCode(e);
+            response.StatusCode = (int)e.StatusCode;
 
             var responseBody = new ExceptionModel
             {
-                StatusCode = response.StatusCode,
+                StatusCode = (int)e.StatusCode,
                 ErrorMessage = e.Message
             };
 
@@ -45,14 +45,5 @@ public class GlobalExceptionHandlerMiddleware
     }
 
     private void LogException(Exception exception)
-        => _logger.LogError(22, exception, "An error was thrown");
-
-    private static int GetStatusCode(Exception exception)
-    {
-        return exception switch
-        {
-            AuthException => (int)HttpStatusCode.Unauthorized,
-            _ => (int)HttpStatusCode.InternalServerError
-        };
-    }
+        => _logger.LogError(22, exception, "An exception was thrown");
 }
