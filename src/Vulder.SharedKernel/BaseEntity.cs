@@ -14,8 +14,4 @@ public abstract class BaseEntity
     [BsonRequired]
     [BsonRepresentation(BsonType.String)]
     public Guid Id { get; set; }
-
-    [NotMapped]
-    [BsonIgnore]
-    public List<BaseDomainEvent> Events { get; set; } = new();
 }

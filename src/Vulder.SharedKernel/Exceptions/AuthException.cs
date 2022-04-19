@@ -1,18 +1,12 @@
-using System;
+using System.Net;
 
 namespace Vulder.SharedKernel.Exceptions;
 
-public class AuthException : Exception
+public class AuthException : VulderBaseException
 {
-    public AuthException() : base()
-    {
-    }
-
-    public AuthException(string message) : base(message)
-    {
-    }
-
-    public AuthException(string message, Exception innerException) : base(message, innerException)
+    public override HttpStatusCode StatusCode => HttpStatusCode.Unauthorized;
+    
+    public AuthException(string message = "Unable to authorize user") : base(message)
     {
     }
 }
