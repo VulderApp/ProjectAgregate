@@ -1,5 +1,4 @@
 using System;
-using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -26,19 +25,17 @@ public class GlobalExceptionHandlerMiddleware
         {
             await _next.Invoke(context);
         }
-        catch (Exception e)
+        catch (VulderBaseException e)
         {
             LogException(e);
-            
-            var vulderBaseException = (VulderBaseException)e;
-
             var response = context.Response;
+
             response.ContentType = "application/json";
-            response.StatusCode = (int)vulderBaseException.StatusCode;
+            response.StatusCode = (int) e.StatusCode;
 
             var responseBody = new ExceptionModel
             {
-                StatusCode = (int)vulderBaseException.StatusCode,
+                StatusCode = (int) e.StatusCode,
                 ErrorMessage = e.Message
             };
 
